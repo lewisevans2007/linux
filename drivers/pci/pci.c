@@ -32,6 +32,7 @@
 #include <asm/dma.h>
 #include <linux/aer.h>
 #include <linux/bitfield.h>
+#include <linux/printk.h>
 #include "pci.h"
 
 DEFINE_MUTEX(pci_slot_mutex);
@@ -2089,9 +2090,22 @@ EXPORT_SYMBOL(pci_enable_device_mem);
  * Note we don't actually enable the device many times if we call
  * this function repeatedly (we just increment the count).
  */
+
 int pci_enable_device(struct pci_dev *dev)
 {
-	return pci_enable_device_flags(dev, IORESOURCE_MEM | IORESOURCE_IO);
+	printk(KERN_INFO "pci_enable_device: %s\n", pci_name(dev));
+	printk(KERN_INFO "pci_enable_device: dev->vendor: %x\n", dev->vendor);
+	printk(KERN_INFO "pci_enable_device: dev->device: %x\n", dev->device);
+	printk(KERN_INFO "pci_enable_device: dev->subsystem_vendor: %x\n", dev->subsystem_vendor);
+	printk(KERN_INFO "pci_enable_device: dev->subsystem_device: %x\n", dev->subsystem_device);
+	printk(KERN_INFO "pci_enable_device: dev->class: %x\n", dev->class);
+	printk(KERN_INFO "pci_enable_device: dev->revision: %x\n", dev->revision);
+	printk(KERN_INFO "pci_enable_device: dev->hdr_type: %x\n", dev->hdr_type);
+	printk(KERN_INFO "pci_enable_device: dev->pcie_cap: %x\n", dev->pcie_cap);
+	int ret;
+	ret = pci_enable_device_flags(dev, IORESOURCE_MEM | IORESOURCE_IO);
+	printk(KERN_INFO "pci_enable_device: return code: %x\n", ret);
+	return ret;
 }
 EXPORT_SYMBOL(pci_enable_device);
 
