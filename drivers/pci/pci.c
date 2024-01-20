@@ -2090,7 +2090,7 @@ EXPORT_SYMBOL(pci_enable_device_mem);
  * Note we don't actually enable the device many times if we call
  * this function repeatedly (we just increment the count).
  */
-
+#ifdef CONFIG_PCI_DEBUG
 int pci_enable_device(struct pci_dev *dev)
 {
 	printk(KERN_INFO "pci_enable_device: %s\n", pci_name(dev));
@@ -2108,6 +2108,13 @@ int pci_enable_device(struct pci_dev *dev)
 	return ret;
 }
 EXPORT_SYMBOL(pci_enable_device);
+#else
+int pci_enable_device(struct pci_dev *dev)
+{
+	return pci_enable_device_flags(dev, IORESOURCE_MEM | IORESOURCE_IO);
+}
+EXPORT_SYMBOL(pci_enable_device);
+#endif
 
 /*
  * Managed PCI resources.  This manages device on/off, INTx/MSI/MSI-X
