@@ -966,6 +966,7 @@ int usb_release_bos_descriptor(struct usb_device *dev)
 	} else {
 		return -ENODEV;
 	}
+	return 0;
 }
 
 static const __u8 bos_desc_len[256] = {
