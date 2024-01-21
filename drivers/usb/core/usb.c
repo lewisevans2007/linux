@@ -486,12 +486,20 @@ static void usb_release_dev(struct device *dev)
 {
 	struct usb_device *udev;
 	struct usb_hcd *hcd;
-
+	int ret;
 	udev = to_usb_device(dev);
 	hcd = bus_to_hcd(udev->bus);
 
-	usb_destroy_configuration(udev);
-	usb_release_bos_descriptor(udev);
+	ret = usb_destroy_configuration(udev);
+	if (!ret){
+		dev_err(dev, "usb_release_dev: destroy configuration failed %d\n",
+			ret);
+	}
+	ret = usb_release_bos_descriptor(udev);
+	if (!ret){
+		dev_err(dev, "usb_release_dev: release bos descriptor failed %d\n",
+			ret);
+	}
 	of_node_put(dev->of_node);
 	usb_put_hcd(hcd);
 	kfree(udev->product);

@@ -822,12 +822,12 @@ static int usb_parse_configuration(struct usb_device *dev, int cfgidx,
 /* hub-only!! ... and only exported for reset/reinit path.
  * otherwise used internally on disconnect/destroy path
  */
-void usb_destroy_configuration(struct usb_device *dev)
+int usb_destroy_configuration(struct usb_device *dev)
 {
 	int c, i;
 
 	if (!dev->config)
-		return;
+		return 1;
 
 	if (dev->rawdescriptors) {
 		for (i = 0; i < dev->descriptor.bNumConfigurations; i++)
@@ -849,6 +849,7 @@ void usb_destroy_configuration(struct usb_device *dev)
 	}
 	kfree(dev->config);
 	dev->config = NULL;
+	return 0;
 }
 
 
@@ -956,12 +957,14 @@ err:
 	return result;
 }
 
-void usb_release_bos_descriptor(struct usb_device *dev)
+int usb_release_bos_descriptor(struct usb_device *dev)
 {
 	if (dev->bos) {
 		kfree(dev->bos->desc);
 		kfree(dev->bos);
 		dev->bos = NULL;
+	} else {
+		return -ENODEV;
 	}
 }
 

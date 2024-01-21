@@ -531,7 +531,7 @@ extern int usb_new_device(struct usb_device *dev);
 extern void usb_disconnect(struct usb_device **);
 
 extern int usb_get_configuration(struct usb_device *dev);
-extern void usb_destroy_configuration(struct usb_device *dev);
+extern int usb_destroy_configuration(struct usb_device *dev);
 
 /*-------------------------------------------------------------------------*/
 
