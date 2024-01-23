@@ -22,25 +22,28 @@ struct acpi_device;
 
 #define ACPI_VIDEO_CLASS	"video"
 
+/* ACPI video device types */
 #define ACPI_VIDEO_DISPLAY_CRT  1
-#define ACPI_VIDEO_DISPLAY_TV   2
-#define ACPI_VIDEO_DISPLAY_DVI  3
+#define ACPI_VIDEO_DISPLAY_TV   2 
+#define ACPI_VIDEO_DISPLAY_DVI  3 
 #define ACPI_VIDEO_DISPLAY_LCD  4
 
+/* ACPI video device IDs */
 #define ACPI_VIDEO_DISPLAY_LEGACY_MONITOR 0x0100
 #define ACPI_VIDEO_DISPLAY_LEGACY_PANEL   0x0110
 #define ACPI_VIDEO_DISPLAY_LEGACY_TV      0x0200
 
-#define ACPI_VIDEO_NOTIFY_SWITCH		0x80
-#define ACPI_VIDEO_NOTIFY_PROBE			0x81
-#define ACPI_VIDEO_NOTIFY_CYCLE			0x82
-#define ACPI_VIDEO_NOTIFY_NEXT_OUTPUT		0x83
-#define ACPI_VIDEO_NOTIFY_PREV_OUTPUT		0x84
-#define ACPI_VIDEO_NOTIFY_CYCLE_BRIGHTNESS	0x85
-#define ACPI_VIDEO_NOTIFY_INC_BRIGHTNESS	0x86
-#define ACPI_VIDEO_NOTIFY_DEC_BRIGHTNESS	0x87
-#define ACPI_VIDEO_NOTIFY_ZERO_BRIGHTNESS	0x88
-#define ACPI_VIDEO_NOTIFY_DISPLAY_OFF		0x89
+/* ACPI video device status */
+#define ACPI_VIDEO_NOTIFY_SWITCH			0x80 /* Switch display */
+#define ACPI_VIDEO_NOTIFY_PROBE				0x81 /* Probe display */
+#define ACPI_VIDEO_NOTIFY_CYCLE				0x82 /* Cycle display */
+#define ACPI_VIDEO_NOTIFY_NEXT_OUTPUT		0x83 /* Next output */
+#define ACPI_VIDEO_NOTIFY_PREV_OUTPUT		0x84 /* Previous output */
+#define ACPI_VIDEO_NOTIFY_CYCLE_BRIGHTNESS	0x85 /* Cycle brightness */
+#define ACPI_VIDEO_NOTIFY_INC_BRIGHTNESS	0x86 /* Increase brightness */
+#define ACPI_VIDEO_NOTIFY_DEC_BRIGHTNESS	0x87 /* Decrease brightness */
+#define ACPI_VIDEO_NOTIFY_ZERO_BRIGHTNESS	0x88 /* Zero brightness */
+#define ACPI_VIDEO_NOTIFY_DISPLAY_OFF		0x89 /* Display off */
 
 enum acpi_backlight_type {
 	acpi_backlight_undef = -1,
