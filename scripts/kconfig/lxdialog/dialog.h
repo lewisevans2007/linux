@@ -180,6 +180,8 @@ int on_key_resize(void);
 #define WINDOW_WIDTH_MIN 80
 
 int init_dialog(const char *backtitle);
+int get_terminal_width(void);
+int get_terminal_height(void);
 void set_dialog_backtitle(const char *backtitle);
 void set_dialog_subtitles(struct subtitle_list *subtitles);
 void end_dialog(int x, int y);

@@ -1032,7 +1032,8 @@ int main(int ac, char **av)
 
 	if (init_dialog(NULL)) {
 		fprintf(stderr, "Your display is too small to run Menuconfig!\n");
-		fprintf(stderr, "It must be at least 19 lines by 80 columns.\n");
+		fprintf(stderr, "It must be at least %d lines by %d columns.\n",WINDOW_HEIGTH_MIN,WINDOW_WIDTH_MIN);
+		fprintf(stderr, "Current size is %d lines by %d columns.\n",get_terminal_height(),get_terminal_width());
 		return 1;
 	}
 
