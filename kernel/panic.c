@@ -273,6 +273,19 @@ static void panic_other_cpus_shutdown(bool crash_kexec)
  *
  *	This function never returns.
  */
+#ifdef CONFIG_FANCY_PANIC
+int fancy_panic_set(void)
+{
+	return 1;
+}
+#else
+int fancy_panic_set(void)
+{
+	return 0;
+}
+#endif
+	
+
 void panic(const char *fmt, ...)
 {
 	static char buf[1024];
@@ -330,8 +343,10 @@ void panic(const char *fmt, ...)
 
 	if (len && buf[len - 1] == '\n')
 		buf[len - 1] = '\0';
-
-	pr_emerg("---[ start kernel panic - not syncing: %s ]---\n", buf);
+	if (fancy_panic_set() == 1)
+		pr_emerg("---[ start kernel panic - not syncing: %s ]---\n", buf);
+	else
+		pr_emerg("start kernel panic - not syncing: %s\n", buf);
 #ifdef CONFIG_DEBUG_BUGVERBOSE
 	/*
 	 * Avoid nested stack-dumping if a panic occurs during oops processing

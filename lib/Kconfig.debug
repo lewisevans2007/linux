@@ -1,6 +1,15 @@
 # SPDX-License-Identifier: GPL-2.0-only
 menu "Kernel hacking"
 
+menu "Panic options"
+config FANCY_PANIC
+	bool "Show fancy start kernel panic message"
+	help
+	  If you say Y here, the kernel will display a nice
+	  start kernel panic message.
+
+endmenu
+
 menu "printk and dmesg options"
 
 config PRINTK_TIME
