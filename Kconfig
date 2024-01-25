@@ -1,32 +1,27 @@
 # SPDX-License-Identifier: GPL-2.0
 #
+# Kconfig root configuration file. This file includes all the individual
+# config files found in the source tree that define the configuration
+# symbols and options. The only purpose of this file is to provide a
+# single, convenient starting point for configuring the kernel.
+#
 # For a description of the syntax of this configuration file,
 # see Documentation/kbuild/kconfig-language.rst.
 #
 mainmenu "Linux/$(ARCH) $(KERNELVERSION) Kernel Configuration"
 
+
+# Kconfig sources
 source "scripts/Kconfig.include"
-
 source "init/Kconfig"
-
 source "kernel/Kconfig.freezer"
-
 source "fs/Kconfig.binfmt"
-
 source "mm/Kconfig"
-
 source "net/Kconfig"
-
 source "drivers/Kconfig"
-
 source "fs/Kconfig"
-
 source "security/Kconfig"
-
 source "crypto/Kconfig"
-
 source "lib/Kconfig"
-
 source "lib/Kconfig.debug"
-
 source "Documentation/Kconfig"
