@@ -5,7 +5,7 @@
 
 // warning: MPFR header version 4.1.1-p1 differs from library version 4.2.0.
 // GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-// options passed: -mlittle-endian -mgeneral-regs-only -mabi=lp64 -mbranch-protection=none -Os -std=gnu11 -fshort-wchar -funsigned-char -fno-common -fno-PIE -fno-strict-aliasing -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-delete-null-pointer-checks -fno-allow-store-data-races -fno-stack-protector -fno-omit-frame-pointer -fno-optimize-sibling-calls -ftrivial-auto-var-init=zero -fno-stack-clash-protection -falign-functions=4 -fno-strict-overflow -fstack-check=no -fconserve-stack
+// options passed: -mlittle-endian -mgeneral-regs-only -mabi=lp64 -mbranch-protection=pac-ret -O2 -std=gnu11 -fshort-wchar -funsigned-char -fno-common -fno-PIE -fno-strict-aliasing -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-delete-null-pointer-checks -fno-allow-store-data-races -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -ftrivial-auto-var-init=zero -fno-stack-clash-protection -falign-functions=4 -fno-strict-overflow -fstack-check=no -fconserve-stack
 	.text
 	.section	.text.startup,"ax",@progbits
 	.align	2
@@ -1055,3 +1055,13 @@ main:
 	.size	main, .-main
 	.ident	"GCC: (Debian 12.2.0-14) 12.2.0"
 	.section	.note.GNU-stack,"",@progbits
+	.section	.note.gnu.property,"a"
+	.align	3
+	.word	4
+	.word	16
+	.word	5
+	.string	"GNU"
+	.word	3221225472
+	.word	4
+	.word	2
+	.align	3

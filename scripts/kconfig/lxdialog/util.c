@@ -325,6 +325,20 @@ int init_dialog(const char *backtitle)
 	return 0;
 }
 
+/* XXX: Produces warning */
+int get_terminal_width(){
+	int height, width;
+	getmaxyx(stdscr, height, width);
+	return width;
+}
+
+/* XXX: Produces warning */
+int get_terminal_height(){
+	int height, width;
+	getmaxyx(stdscr, height, width);
+	return height;
+}
+
 void set_dialog_backtitle(const char *backtitle)
 {
 	dlg.backtitle = backtitle;
