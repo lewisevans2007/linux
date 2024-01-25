@@ -1031,6 +1031,7 @@ int main(int ac, char **av)
 	}
 
 	if (init_dialog(NULL)) {
+		fprintf(stderr, "==================================================\n");
 		fprintf(stderr, "Your display is too small to run Menuconfig!\n");
 		fprintf(stderr, "It must be at least %d lines by %d columns.\n",WINDOW_HEIGTH_MIN,WINDOW_WIDTH_MIN);
 		fprintf(stderr, "Current size is %d lines by %d columns.\n",get_terminal_height(),get_terminal_width());
@@ -1042,6 +1043,7 @@ int main(int ac, char **av)
 			int width_diff = WINDOW_WIDTH_MIN - get_terminal_width();
 			fprintf(stderr, "Increase the width of your terminal window by %d columns.\n",width_diff);
 		}
+		fprintf(stderr, "==================================================\n");
 		return 1;
 	}
 
