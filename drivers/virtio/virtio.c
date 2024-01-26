@@ -553,6 +553,8 @@ err:
 EXPORT_SYMBOL_GPL(virtio_device_restore);
 #endif
 
+
+#ifdef CONFIG_VIRTIO_DEBUG_PRINTS
 static int virtio_init(void)
 {
 	printk(KERN_INFO "virtio: initializing\n");
@@ -562,6 +564,7 @@ static int virtio_init(void)
 	return 0;
 }
 
+
 static void __exit virtio_exit(void)
 {
 	printk(KERN_INFO "virtio: exit\n");
@@ -569,6 +572,21 @@ static void __exit virtio_exit(void)
 	ida_destroy(&virtio_index_ida);
 	printk(KERN_INFO "virtio: exit done\n");
 }
+#else
+static int __init virtio_init(void)
+{
+	if (bus_register(&virtio_bus) != 0)
+		panic("virtio bus registration failed");
+	return 0;
+}
+
+static void __exit virtio_exit(void)
+{
+	bus_unregister(&virtio_bus);
+	ida_destroy(&virtio_index_ida);
+}
+#endif
+
 core_initcall(virtio_init);
 module_exit(virtio_exit);
 

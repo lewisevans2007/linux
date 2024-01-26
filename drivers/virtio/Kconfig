@@ -173,4 +173,13 @@ config VIRTIO_DMA_SHARED_BUFFER
 	 This option adds a flavor of dma buffers that are backed by
 	 virtio resources.
 
+config VIRTIO_DEBUG_PRINTS
+	bool "Enable debug prints for virtio"
+	depends on DEBUG_KERNEL
+	default n
+	help
+	  This option enables debug prints for virtio. Usefull to see if virtio is being enabled or not.
+
+	  If unsure, say N.
+
 endif # VIRTIO_MENU
