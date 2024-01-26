@@ -555,15 +555,19 @@ EXPORT_SYMBOL_GPL(virtio_device_restore);
 
 static int virtio_init(void)
 {
+	printk(KERN_INFO "virtio: initializing\n");
 	if (bus_register(&virtio_bus) != 0)
 		panic("virtio bus registration failed");
+	printk(KERN_INFO "virtio: initializing done\n");
 	return 0;
 }
 
 static void __exit virtio_exit(void)
 {
+	printk(KERN_INFO "virtio: exit\n");
 	bus_unregister(&virtio_bus);
 	ida_destroy(&virtio_index_ida);
+	printk(KERN_INFO "virtio: exit done\n");
 }
 core_initcall(virtio_init);
 module_exit(virtio_exit);
