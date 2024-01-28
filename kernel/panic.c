@@ -450,6 +450,31 @@ void panic(const char *fmt, ...)
 			 "twice on console to return to the boot prom\n");
 	}
 #endif
+#ifdef CONFIG_SHUTDOWN_ON_PANIC
+	/* About this section:
+	 * This code is only useful for kernel testers or devices 
+	 * that need to be shut down when a kernel panic is triggered.
+	 * 
+	 * This function ca be turned on by setting CONFIG_SHUTDOWN_ON_PANIC
+	 * on the Kconfig file. at Kernel hacking -> Panic options -> Halt machine on panic
+	 * 
+	 * Reason? When a system is panicked it sit at 100% CPU usage which can 
+	 * cause overheating on some systems and a tester can leave QEMU running 
+	 * with a panicked kernel and not realize why their system is running slow or hot. 
+	 * This prevents the issue from happening. 
+	 * 
+	 * Just running a panicked system for 10 minutes in QEMU on a macbook pro caused 
+	 * the CPU to reach 60ºC from 30ºC on a M3 Pro Processor.
+	*/
+
+	pr_emerg("---[ end Kernel panic - not syncing: %s ]---\n", buf);
+
+	/* For reference in logs so we know why the system was shutdown */
+	pr_emerg("System powering down due to kernel panic");
+
+	/* Shutdown the system */
+	kernel_power_off();
+#endif
 #if defined(CONFIG_S390)
 	disabled_wait();
 #endif

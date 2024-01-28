@@ -8,6 +8,14 @@ config FANCY_PANIC
 	  If you say Y here, the kernel will display a nice
 	  start kernel panic message.
 
+
+config SHUTDOWN_ON_PANIC
+	bool "Halt machine on panic"
+	help
+	  If you say Y here, the machine will immediately halt when
+	  the kernel panics.  This is useful if debugging panics on qemu
+	  with no graphical console since when a machine is panicked it
+	  uses 100% CPU and qemu will not respond to keyboard input.
 endmenu
 
 menu "printk and dmesg options"
