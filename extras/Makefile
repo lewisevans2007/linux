@@ -10,4 +10,4 @@ build-docker:
 	docker build --platform linux/$(DOCKER-ARCH) -t linux-dev extras/.
 
 run-docker:
-	sudo docker run -it --privileged --cap-add SYS_ADMIN --cpus=2 --platform linux/arm64 -v .:/linux -v ~/Documents/busybox:/busybox linux-dev
+	sudo docker run -it --privileged --cap-add SYS_ADMIN --cpus=10 --platform linux/arm64 -v .:/linux -v ~/Documents/busybox:/busybox linux-dev
