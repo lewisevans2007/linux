@@ -1554,6 +1554,8 @@ board-dirs := $(sort $(notdir $(board-dirs:/=)))
 
 PHONY += help
 help:
+	@echo  'Linux kernel makefile help'
+	@echo  '============================================================'
 	@echo  'Cleaning targets:'
 	@echo  '  clean		  - Remove most generated files but keep the config and'
 	@echo  '                    enough build support to build external modules'
