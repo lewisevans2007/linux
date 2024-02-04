@@ -935,6 +935,8 @@ asmlinkage __visible __init __no_sanitize_address __noreturn
 				  __stop___param - __start___param, -1, -1,
 				  NULL, &unknown_bootoption);
 	print_unknown_bootoptions();
+
+	/* INIT arguments */
 	bool extra_args_been_passed = false;
 	if (!IS_ERR_OR_NULL(after_dashes)){
 		parse_args("Setting init args", after_dashes, NULL, 0, -1, -1,
@@ -949,6 +951,7 @@ asmlinkage __visible __init __no_sanitize_address __noreturn
 	if (extra_args_been_passed == false) {
 		pr_notice("No extra init args have been passed\n");
 	}
+	
 	/* Architectural and non-timekeeping rng init, before allocator init */
 	random_init_early(command_line);
 
