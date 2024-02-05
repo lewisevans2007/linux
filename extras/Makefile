@@ -3,6 +3,13 @@
 # extras/Makefile
 #
 # Makefile for the extras directory.
+#
+# Most of the targets are used to build 
+# and run the docker image for testing the kernel
+# on environments that are not supported by the
+# build system. It also makes it so that the
+# entire build is contained within the docker so 
+# that if you screw up, you can always restart the container.
 
 DOCKER-ARCH = arm64
 
