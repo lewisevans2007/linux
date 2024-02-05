@@ -2,7 +2,7 @@
 #
 # extras/Makefile
 #
-# Makefile for the extras directory. Ignored by main Makefile.
+# Makefile for the extras directory.
 
 DOCKER-ARCH = arm64
 

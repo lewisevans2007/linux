@@ -1339,6 +1339,16 @@ endif
 
 PHONY += resolve_btfids_clean
 
+# Docker
+
+build-docker:
+	make -f extras/Makefile build-docker
+
+run-docker:
+	make -f extras/Makefile run-docker
+
+PHONY += build-docker run-docker
+
 resolve_btfids_O = $(abspath $(objtree))/tools/bpf/resolve_btfids
 
 # tools/bpf/resolve_btfids directory might not exist
