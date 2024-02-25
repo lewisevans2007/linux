@@ -469,11 +469,19 @@ void panic(const char *fmt, ...)
 
 	pr_emerg("---[ end Kernel panic - not syncing: %s ]---\n", buf);
 
-	/* For reference in logs so we know why the system was shutdown */
-	pr_emerg("System powering down due to kernel panic");
+	if (kernel_can_power_off()) {
+		/* For reference in logs so we know why the system was shutdown */
+		pr_emerg("System powering down due to kernel panic");
 
-	/* Shutdown the system */
-	kernel_power_off();
+		/* Shutdown the system */
+		kernel_power_off();
+	} else {
+		/* If the system can't power off, we will just halt the system
+		   We also want to tell the user that the system is halted and
+		   cant be powered off because of the kernel panic. */
+		pr_emerg("Power off not supported, system halted due to kernel panic");
+		machine_halt();
+	}
 #endif
 #if defined(CONFIG_S390)
 	disabled_wait();
