@@ -400,17 +400,23 @@ static int __init do_name(void)
 
 static int __init do_copy(void)
 {
+	int ret = 0;
 	if (byte_count >= body_len) {
-		if (xwrite(wfile, victim, body_len, &wfile_pos) != body_len)
+		if (xwrite(wfile, victim, body_len, &wfile_pos) != body_len) {
 			error("write error");
+			ret = 1;
+		}
 
 		do_utime_path(&wfile->f_path, mtime);
 		fput(wfile);
-		if (csum_present && io_csum != hdr_csum)
-			error("bad data checksum");
+		if (csum_present && io_csum != hdr_csum) {
+			error("bad data checksum"); 
+			ret = 1;
+		}
+		
 		eat(body_len);
 		state = SkipIt;
-		return 0;
+		return ret;
 	} else {
 		if (xwrite(wfile, victim, byte_count, &wfile_pos) != byte_count)
 			error("write error");
