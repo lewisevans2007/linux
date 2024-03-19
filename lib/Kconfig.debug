@@ -20,7 +20,8 @@ config SHUTDOWN_ON_PANIC
 	  with no graphical console since when a machine is panicked it
 	  uses 100% CPU and qemu will not respond to keyboard input.
 
-	  By default, this option is disabled.
+	  By default, this option is disabled. When this is dissabled 
+	  the kernel will not halt the machine when it panics.
 endmenu
 
 menu "printk and dmesg options"
