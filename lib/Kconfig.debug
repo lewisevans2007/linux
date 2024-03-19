@@ -6,7 +6,9 @@ config FANCY_PANIC
 	bool "Show fancy start kernel panic message"
 	help
 	  If you say Y here, the kernel will display a nice
-	  start kernel panic message.
+	  start kernel panic message. This is useful for debugging
+	  the kernel when there might be lots of printk messages 
+	  making it harder to see when the panic message starts.
 
 
 config SHUTDOWN_ON_PANIC
