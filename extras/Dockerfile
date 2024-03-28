@@ -26,4 +26,6 @@ RUN apt-get install -y git \
 
 RUN apt-get install -y qemu-system-aarch64 vim nano
 
+WORKDIR /linux 
+
 CMD ["/bin/fish"]
