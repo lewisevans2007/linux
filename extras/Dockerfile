@@ -10,7 +10,20 @@
 FROM debian:latest
 
 RUN apt-get update
-RUN apt-get install -y git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison cpio
+RUN apt-get install -y git \
+    fish \
+    fakeroot \
+    build-essential \
+    ncurses-dev \
+    xz-utils \
+    libssl-dev \
+    bc \
+    flex \
+    libelf-dev \
+    bison \
+    cpio
+
 
 RUN apt-get install -y qemu-system-aarch64 vim nano
-CMD ["/bin/bash"]
+
+CMD ["/bin/fish"]
