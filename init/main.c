@@ -540,6 +540,7 @@ static int __init unknown_bootoption(char *param, char *val, const char *unused,
 				     void *arg)
 {
 	size_t len = strlen(param);
+	printk(KERN_INFO "Checking boot option: %s\n", param);
 
 	/* Handle params aliased to sysctls */
 	if (sysctl_is_alias(param))
